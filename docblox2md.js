@@ -294,7 +294,7 @@ function blocksToMarkdown(blocks, level, threshold) {
         case 'note':
           note = tag.line;
           break;
-        default:
+        default:  
       }
     }
 
@@ -337,11 +337,10 @@ function blocksToMarkdown(blocks, level, threshold) {
     for (j = 0; j < params.length; j++) {
       md.push(
         '* `'
-					+ params[j].name
-					+ '` — `'
 					+ params[j].type
-					+ '`'
-					+ (params[j].desc ? ' — ' + params[j].desc : '')
+					+ '` — '
+					+ params[j].name + ' '
+					+ (params[j].desc ? params[j].desc : '')
 					+ '\n'
       );
     }
