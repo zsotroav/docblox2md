@@ -193,6 +193,8 @@ function blocksToMarkdown(blocks, level, threshold) {
     let params = [];
     let returnType = '';
     let returnDesc = '';
+    let brief = '';
+    let note = '';
 
     // Gather useful information from tags
     for (j = 0; j < blocks[i].tags.length; j++) {
@@ -285,6 +287,13 @@ function blocksToMarkdown(blocks, level, threshold) {
         case 'ignore':
           continue nextBlock;
 
+        case 'brief':
+          brief = tag.line;
+          break;
+
+        case 'note':
+          note = tag.line;
+          break;
         default:
       }
     }
@@ -313,6 +322,14 @@ function blocksToMarkdown(blocks, level, threshold) {
       }
     }
 
+    if (brief != '') {
+      md.push('\n**Brief:** ' + brief + '\n');
+    }
+
+    if (note != '') {
+      md.push('\n**Note:** ' + note + '\n');
+    }
+    
     // Parameters
     if (params.length > 0) {
       md.push('\n**Parameters:**\n\n');
